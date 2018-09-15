@@ -43,7 +43,7 @@ obj2.a = 1;
 console.log(obj2);  //{a: 1,b: 0}
 console.log(obj1);  //{a: 0,b: 0},obj1并未改变
 ```
-Object.assign()第一个参数是目标对象，第二个参数对象属性会覆盖第一个对象的同名属性，这里第一个对象时空的，所以相当于拷贝了一个obj1。注意，这里的obj1中的所有属性都是简单的值类型，这些值类型的属性拷贝过去都是生成了一个副本的。所以修改obj2中的属性并不会影响obj1。当obj1中有数组和对象这样的传递引用的值时这样拷贝就不行了就不行了。
+Object.assign()第一个参数是目标对象，第二个参数对象属性会覆盖第一个对象的同名属性，这里第一个对象时空的，所以相当于拷贝了一个obj1。注意，这里的obj1中的所有属性都是简单的值类型，这些值类型的属性拷贝过去都是生成了一个副本的。所以修改obj2中的属性并不会影响obj1。当obj1中有数组和对象这样的传递引用的值时这样拷贝就不行了。
 ```javascript
 const obj1 = {
     a: 0,
@@ -51,15 +51,15 @@ const obj1 = {
         b: 0,
     }
 };
+const obj2 = Object.assign({}, obj1);
 
 obj2.a = 1;
-console.log(obj1.a);//0,没改变
-console.log(obj2.a);//1
+console.log(obj1.a);    //0
+console.log(obj2.a);    //1
   
-const obj2 = Object.assign({}, obj1);
-obj2.obj.b = 1;        //修改obj2
-console.log(obj2.obj); //{b: 1}，改变
-console.log(obj1.obj); //{b: 1}，也跟着改变
+obj2.obj.b = 1;         //修改obj2
+console.log(obj2.obj);  //{b: 1}，改变
+console.log(obj1.obj);  //{b: 1}，也跟着改变
 ```
 这里虽然和上面例子一样也是用Object.assign()对对象拷贝，但是本例中的obj1是一个复杂的对象，其属性值中有对象类型。前面我们知道了对象是传递引用的。所以在将obj1拷贝到新对象时由于obj属性是一个对象，所以新对象里拷贝的只是obj属性值（对象）的引用。因此obj1和obj2的obj属性都是引用的同一个对象。但是a属性是number类型，拷贝时是产生的副本，所以是不同的值。
 
@@ -179,4 +179,4 @@ console.log(obj2.obj.z.a)   //1
 
 ## 相关链接
 * [const定义对象的可修改性](/es6/const.md)
-* [返回目录](/songshuangfei/front-end-note/)
+* [返回目录](/)
