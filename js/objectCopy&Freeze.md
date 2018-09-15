@@ -178,5 +178,5 @@ console.log(obj2.obj.z.a)   //1
 通过上面的方法我们就实现了一个真正不能修改的常量对象。
 
 ## 相关链接
-* [const定义对象的可修改性](/songshuangfei/front-end-note/blob/maste/es6/const.md)
+* [const定义对象的可修改性](/es6/const.md)
 * [返回目录](/songshuangfei/front-end-note/)

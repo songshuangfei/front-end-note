@@ -5,9 +5,9 @@
 
 <span id = "js"></span>
 ## js笔记 
-* [对象拷贝与冻结](/songshuangfei/front-end-note/blob/maste/js/objectCopy&Freeze.md.md)
+* [对象拷贝与冻结](/blob/maste/js/objectCopy&Freeze.md.md)
 
 
 <span id = "es6"></span>
 ## es6笔记 
-* [const定义对象的可修改性](/songshuangfei/front-end-note/blob/maste/es6/const.md)
+* [const定义对象的可修改性](/blob/maste/es6/const.md)
