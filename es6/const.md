@@ -46,7 +46,7 @@ console.log(obj.y)  //{p: 0}
 obj.y.p = 1;        //修改生效，obj.y下的属性并未冻结
 console.log(obj.y); //{p: 1}
 ```
-Object.freeze()只能冻结对象的直接属性不能修改。并不能保证属性中的属性不被修改。但是可以通过遍历对象的方式实现所有属性的冻结。在[对象的拷贝与冻结](/songshuangfei/front-end-note/blob/maste/es6/const.md)有讲。
+Object.freeze()只能冻结对象的直接属性不能修改。并不能保证属性中的属性不被修改。但是可以通过遍历对象的方式实现所有属性的冻结。在[对象的拷贝与冻结](/es6/const.md)有讲。
 
 ## 相关链接
 * [对象的拷贝与冻结](/js/objectCopy&Freeze.md)
