@@ -50,4 +50,4 @@ Object.freeze()只能冻结对象的直接属性不能修改。并不能保证�
 
 ## 相关链接
 * [对象的拷贝与冻结](/js/objectCopyFreeze.md)
-* [返回目录](/)
+* [返回目录](/README.md)

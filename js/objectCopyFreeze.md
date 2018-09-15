@@ -179,4 +179,4 @@ console.log(obj2.obj.z.a)   //1
 
 ## 相关链接
 * [const定义对象的可修改性](/es6/const.md)
-* [返回目录](/)
+* [返回目录](/README.md)
