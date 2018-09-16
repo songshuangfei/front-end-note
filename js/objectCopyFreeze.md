@@ -120,7 +120,7 @@ console.log(obj2.obj);  //{b: 1}
 这样实现的对象拷贝无论被拷贝的对象中嵌套有多少层的对象都能实现完全的拷贝。
 
 ## 对象冻结
-在es6中我们可以用const申明不可修改的变量。与赋值同理const申明变量能让number、string和boolean类型的变量不能被修改。但却只能让array和object的引用不被修改。还是能通过属性访问方式修改const声明的对象或数组内的值。
+在es6中我们可以用const声明不可修改的变量。与赋值同理const声明变量能让number、string和boolean类型的变量不能被修改。但却只能让array和object的引用不被修改。还是能通过属性访问方式修改const声明的对象或数组内的值。
 ```javascript
 const x = 0;
 x = 1;          //TypeError: Assignment to constant variable.
@@ -136,7 +136,7 @@ obj = {             //TypeError: Assignment to constant variable.
     y: 0
 }
 ```
-上面例子看出const申明的对象只能防止变量的引用不能被修改，但对象内部的属性还是能修改的。并不能真正意义上防止对象被修改。我们可以使用Object.freeze()冻结对象，但是Object.freeze()只能冻结对象的直接属性，属性如果是对象那么该属性内部的属性也能修改。
+上面例子看出const声明的对象只能防止变量的引用不能被修改，但对象内部的属性还是能修改的。并不能真正意义上防止对象被修改。我们可以使用Object.freeze()冻结对象，但是Object.freeze()只能冻结对象的直接属性，属性如果是对象那么该属性内部的属性也能修改。
 ```javascript
 const obj = Object.freeze({
     x: 0,
