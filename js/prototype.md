@@ -82,7 +82,7 @@ p2.sayhi();//Hi Iam Tom
 console.log(p);//Person {name: "Jack"}
 console.log(p2);//Person {name: "Tom"}
 ```
-我们将每个对象都会有的相同的方法`sayhi()`,放到构造函数的prototype里了。这样实例化出来的每个对象都会有这个方法。在最后两行的执行结果里我们看到实例化的对象里其实看不到sayhai这个属性。这是因为在访问对象属性时会现在对象自己的属性里寻找，如果没有找到就继续在原型里寻找，以此类推，直到最后的Object.prototype。如果在实例化的对象里添加同名属性则会覆盖原型链中的属性，但不会修改原型链中的属性。
+我们将每个对象都会有的相同的方法`sayhi()`,放到构造函数的prototype里了。这样实例化出来的每个对象都会有这个方法。在最后两行的执行结果里我们看到实例化的对象里其实看不到sayhai这个属性。这是因为在访问对象属性时会先在对象自己的属性里寻找，如果没有找到就继续在原型里寻找，以此类推，直到最后的Object.prototype。如果在实例化的对象里添加同名属性则会覆盖原型链中的属性，但不会修改原型链中的属性。
 ```javascript
 p2.sayhi = function(){
     console.log("Hello I am "+this.name);
