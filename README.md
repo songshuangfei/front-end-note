@@ -6,6 +6,7 @@
 <span id = "js"></span>
 ## js笔记 
 * [对象拷贝与冻结](/js/objectCopyFreeze.md)
+* [原型链和构造函数](/js/objectCopyFreeze.md)
 
 
 <span id = "es6"></span>
