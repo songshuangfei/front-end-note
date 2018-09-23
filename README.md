@@ -6,6 +6,7 @@
 <span id = "js"></span>
 ## js笔记 
 * [对象拷贝与冻结](/js/objectCopyFreeze.md)
+* [闭包和自执行函数](/js/closure.md)
 * [原型链和构造函数](/js/prototype.md)
 
 
