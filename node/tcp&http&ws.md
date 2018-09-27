@@ -41,7 +41,7 @@ client.connect(3003,"127.0.0.1",()=>{
 这里的案例并没有很好的交互，并没有体现TCP的长连接的特性。可以前往我的案例[TCP聊天室](https://github.com/songshuangfei/node-demo/tree/master/chat-room)体验TCP连接。
 
 ## HTTP
-HTTP是应用层协议，传输层是TCP协议。从前面知道TCP是是持续可靠的连接，HTTP是基于TCP协议的，所以HTTP也是能保持长连接的。在HTTP1.0中默认使用短连接。比如网页中两个img标签，在HTTP短链接下，第一个img标签获取图片资源时底层TCP会连接并传输图片资源，然后TCP连接断开。当第二个img标签获取图片获取图片资源时底层TCP又会重新连接再传输图片文件。如果网页应用资源较多，这样不断重复多次TCP连接就很浪费资源。所以HTTP1.1规定了默认保持长连接，数据传输完成了保持TCP连接不断开，等待在同域名下继续用这个通道传输数据。一段时间后这个HTTP长连接才会断开。是否是HTTP长连接由浏览器决定，浏览器会再TCP响应头发送`Connection:keep-alive`表示保持连接。HTTP长连接保持的时间由服务器决定。nodejs实现的http服务器默认长连接保持时间是2分钟。
+HTTP是应用层协议，传输层是TCP协议。从前面知道TCP是是持续可靠的连接，HTTP是基于TCP协议的，所以HTTP也是能保持长连接的。在HTTP1.0中默认使用短连接。比如网页中两个img标签，在HTTP短链接下，第一个img标签获取图片资源时底层TCP会连接并传输图片资源，然后TCP连接断开。当第二个img标签获取图片获取图片资源时底层TCP又会重新连接再传输图片文件。如果网页应用资源较多，这样不断重复多次TCP连接就很浪费资源。所以HTTP1.1规定了默认保持长连接，数据传输完成后保持TCP连接不断开，等待在同域名下继续用这个通道传输数据。一段时间后这个HTTP长连接才会断开。是否是HTTP长连接由浏览器决定，浏览器会在TCP响应头发送`Connection:keep-alive`表示保持连接。HTTP长连接保持的时间由服务器决定。nodejs实现的http服务器默认长连接保持时间是2分钟。
 
 我们使用前面的TCPserver.js重新开启这个TCP服务器，看看浏览器发送什么给了TCP服务器。命令`node TCPserver.js`。确保TCP服务启动后我们在浏览器地址栏输入TCP服务端口下的任意一个url路径比如 `http://127.0.0.1:3003/path?num=1`。注意，服务器是一个TCP服务，然而我们在浏览器使用了HTTP访问，发送HTTP连接时浏览器会与服务器先建立TCP连接，所以我们TCP服务也会收到来自浏览器的TCP连接。
 
@@ -74,7 +74,7 @@ server.listen(3000,function(){
 ## WebSocket
 WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端主动向客户端推送数据。在 WebSocket API 中，浏览器和服务器只需要完成一次握手，两者之间就直接可以创建持久性的连接，并进行双向数据传输。
 
-我们在一个html中实现向一个服务器发送websocket请求。新建一个index.html。
+我们在一个html中实现向一个服务器发起websocket连接。新建一个index.html。
 ```html
 <!--index.html-->
 <body>
