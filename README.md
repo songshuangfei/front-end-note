@@ -2,7 +2,7 @@
 总结一些学习中觉得比较重要的东西。
 * <a href="#js">js笔记</a>
 * <a href="#es6">es6笔记</a>
-* <a href="#es6">es6笔记</a>
+* <a href="#nodejs">nodejs笔记</a>
 
 
 <span name="js"></span>
@@ -17,7 +17,7 @@
 * [const定义对象的可修改性](/es6/const.md)
 
 
-<span name="network"></span>
-## 网络
-* [nodejs中的TCP、HTTP和WebSocket](/js/websocket.md)
+<span name="nodejs"></span>
+## node
+* [nodejs中的TCP、HTTP和WebSocket](/node/tcp&http&ws.md)
 
