@@ -30,9 +30,20 @@ console.log(Boolean.prototype.__proto__ === Object.prototype)   //true
 ```
 Array、String、Number、Boolean和Object这些都是构造函数，`new Object()` 就能实例化一个对象。总结：实例化的对象的原型指向其构造函数的prototype。除了Object()构造函数(Object已经是最基本的对象类型)构造函数的原型都指向js基本对象Object.prototype。
 ## 构造函数
-js创建对象的方法最常用的就是通过对象字面量创建，这样创建的对象原型指向`Object.prototype`。构造函数创建对象也是常用的方法。通过构造函数创建对象能够将创建的对象的原型指向任意对象。
+js创建对象的方法最常用的就是通过对象字面量创建，这样创建的对象原型指向`Object.prototype`。通过`Object.create()`方法来创建对象，可以指定新对象原型为该方法的第一个参数而不是指向`Object.prototype`。构造函数创建对象也是常用的方法。通过构造函数创建对象也能够将创建的对象的原型指向任意对象。
 
-我们先看js基本类型的构造函数创建对象的方法。
+使用`Object.create()`方法指定新对象的prototype。
+```javascript
+var obj = Object.create({
+    x:1
+})
+console.log(obj)            //Object{}
+console.log(obj.x)          //1，这个值是继承下来的
+console.log(obj.__proto__)  //Object {x: 1}
+```
+`Object.create()`方法参数必须是一个对象或null。当参数是对象时能将创建的对象的原型指向这个参数对象。所以就能从中继承属性。
+
+js基本类型的构造函数创建对象的方法。
 ```javascript
 var arr = new Array();
 console.log(arr.constructor);//function Array()
