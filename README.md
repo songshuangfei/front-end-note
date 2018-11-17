@@ -15,6 +15,7 @@
 * [对象拷贝与冻结](/js/objectCopyFreeze.md)
 * [闭包和自执行函数](/js/closure.md)
 * [原型链和构造函数](/js/prototype.md)
+* [函数的call，apply，bind方法](/js/call&apply&bind.md)
 
 
 <span name="es6"></span>
