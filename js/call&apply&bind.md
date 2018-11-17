@@ -33,7 +33,7 @@ let add1 = function(a,b){
 
 let add2 = function(){
     let tmp = 0;
-    for(i in arguments){
+    for(let i=0;i<arguments.length;i++){
         tmp += arguments[i]
     }
     this.result += tmp;
