@@ -79,7 +79,9 @@ let obj2 = {
 let getX = obj1.getX.bind(obj2, 1, 2);//修改2
 obj1.getX();//Arguments(0) []
 getX();//Arguments(2) [1, 2]
+getX(3, 4);//Arguments(4) [1, 2, 3, 4]
+
 ```
-bind的第二个参数开始将被作为bind返回的新函数的参数。
+bind的第二个参数开始将被作为bind返回的新函数的参数。在bind返回的新函数调用时传入参数将继续紧跟在bind为新函数传入的参数后面。
 ## 相关链接
 * [返回目录](/README.md)
