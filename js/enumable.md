@@ -59,7 +59,7 @@ var arr = [];
 console.log(arr.__proto__.__proto__==Object.prototype);//true
 console.log(Array.prototype.__proto__==Object.prototype)//true
 ```
-也就是说js的数组并不是是一个纯粹的数组。它也可以像对象一样拥有自己的属性，也能从原型链中继承属性和方法（js的其他基本类型和Array一样都是Objec的子类）。前面说到在`for..in`循环中js中基本包装类型的原型属性是不可枚举的”。我们并不用担心`for..in`遍历数组时得到`Array`里的类型或方法。但是当我们自己在`Array.prototype`里添加属性或在数组实例里添加属性时，`for...in`循环就会枚举出我们添加的这些属性。
+也就是说js的数组并不是是一个纯粹的数组。它也可以像对象一样拥有自己的属性，也能从原型链中继承属性和方法（js的其他基本类型和Array一样都是Objec的子类）。前面说到在`for..in`循环中js中基本包装类型的原型属性是不可枚举的”。我们并不用担心`for..in`遍历数组时得到`Array`里的属性或方法。但是当我们自己在`Array.prototype`里添加属性或在数组实例里添加属性时，`for...in`循环就会枚举出我们添加的这些属性。
 ```js
 Array.prototype.x = 100;
 var arr = [1,2,3];
