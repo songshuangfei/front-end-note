@@ -13,10 +13,11 @@
 <span name="js"></span>
 ## js笔记 
 * [对象拷贝与冻结](/js/objectCopyFreeze.md)
+* [对象和数组的枚举](/js/enumable.md)
 * [闭包和自执行函数](/js/closure.md)
 * [原型链和构造函数](/js/prototype.md)
 * [函数的call，apply，bind方法](/js/call&apply&bind.md)
-* [对象和数组的枚举](/js/enumable.md)
+* [类和继承（es5）](/js/inherit.md)
 
 
 <span name="es6"></span>
