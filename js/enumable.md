@@ -85,7 +85,7 @@ for(var i = 0;i < arr.length; i++){
 //1:2
 //2:3
 ```
-es6后有了更加方便遍历数组的`for..of`循环，`for..of`不能用来枚举对象。
+es6后有了更加方便遍历数组的`for..of`循环。
 > for...of语句在可迭代对象（包括 Array，Map，Set，String，TypedArray，arguments 对象等等）上创建一个迭代循环，调用自定义迭代钩子，并为每个不同属性的值执行语句。
 ```js
 Array.prototype.x = 100;
