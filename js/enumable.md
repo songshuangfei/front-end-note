@@ -99,6 +99,23 @@ for(var v of arr){
 //3
 ```
 `for...of`循环就能很方便的遍历数组，而且不会枚举出数组里的其他属性。
+## 使用Object.definePropert定义不可枚举属性
+`Object.definePropert`能往对象里添加新属性，与普通添加属性不同的是这样添加属性还能指定这个属性是否能被枚举、修改等。
+```js
+var b = {y:1}
+Object.defineProperty(b,"x",{
+    configurable:false, //是否可被修改
+    enumerable:false,   //是否可被枚举
+    value:123           //属性值
+})
+b.x=0;
+console.log(b.x);//123
+for(var k in b){
+    console.log(k+":"+b[k]);//y:1
+}
+```
+上面我们就往对象里添加了一个名为x的属性，且这个属性不可被修改不可枚举。
+
 ## 总结
 * 在枚举对象属性时我们可以使用`for...in`循环，并可用`hasOwnProperty()`方法判断枚举出的属性是否直接属于当前对象。
 * 数组遍历并不推荐使用`for...in`循环（可能会枚举出非数组元素的其他属性）。
