@@ -22,11 +22,13 @@
 <span name="es6"></span>
 ## es6笔记 
 * [const定义对象的可修改性](/es6/const.md)
+* [探究Promise执行流](/es6/promise.md)
 
 <span name="algorithm"></span>
 ## js算法和数据结构
 ### 排序
 * [冒泡排序](/algorithm/sort/BubbleSort.md)
+* [快速排序](/algorithm/sort/quickSort.md)
 
 <span name="nodejs"></span>
 ## nodejs笔记

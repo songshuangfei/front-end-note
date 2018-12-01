@@ -15,7 +15,7 @@ Array.prototype.BubbleSort = function(){
 }
 var a =[5,2,3,4,23,45,88,22];
 a.BubbleSort();
-console.log(a);//Array(8) [2, 3, 4, 5, 22, 23, 45, 88]
+console.log(a);//[2, 3, 4, 5, 22, 23, 45, 88]
 ```
 while循环和for循环实现冒泡排序。
 ```js
@@ -32,7 +32,7 @@ Array.prototype.BubbleSort =function () {
 }
 var a =[5,2,3,-1,4,23,45,88,22];
 a.BubbleSort();
-console.log(a);//Array(8) [-1,2, 3, 4, 5, 22, 23, 45, 88]
+console.log(a);//[-1,2, 3, 4, 5, 22, 23, 45, 88]
 ```
 在冒泡排序中会交换元素的位置。当源数据大多数排列是倒序时就会交换很多次元素位置。所以当源数据是基本顺序部分倒序时使用冒泡排序比较合适。
 ## 相关链接
