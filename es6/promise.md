@@ -15,7 +15,7 @@ p1.then((v) => {
     console.log(err);
 });
 ```
-上面的p1对象就是通过`Promise()`构造函数实例化的一个Promise对象。`Promise()`构造函数接受一个函数作为参数。该函数就包含异步操作。该函数的resolve和reject参数就能用来告诉`then()`方法该Promise是成功还是失败了。异步操作成功就调用resolve，失败就调用reject。成功就执行`then()`的第一个参数（函数），失败就执行第二个参数函数（函数）。rosolve和reject的参数都会分别传给`then()`的两个参数。
+上面的p1对象就是通过`Promise()`构造函数实例化的一个Promise对象。`Promise()`构造函数接受一个函数作为参数。该函数就包含异步操作。该函数的resolve和reject参数就能用来告诉`then()`方法该Promise是成功还是失败了。异步操作成功就调用resolve，失败就调用reject。成功就执行`then()`的第一个回调函数，失败就执行第二个回调函数。rosolve和reject的参数都会分别传给`then()`的两个回调函数。
 
 上面的例子之调用了`resolve()`没有其他情况，所以一定只会输出`succeed`。
 ```js
@@ -34,7 +34,7 @@ p1.then((v) => {
 ```
 上面例子就能根据Promise是否成功做出不同处理。
 ## resolve另一个Promise
-当一个Promise对象resolve一个普通值时（string、number、object等）。`then()`的成功处理函数就会收到这个值作为参数。但是当Promise对象resolve另一个Promise对象时，第一个Promise的`then()`的成功处理函数（then的第一个参数）收到的参数并不是第二个的Promise对象，而是第二个Promise对象内部resolve的值。
+当一个Promise对象resolve一个普通值时（string、number、object等）。`then()`的第一个回调函数就会收到这个值作为参数。但是当Promise对象resolve另一个Promise对象时，前者Promise的`then()`的第一个回调函数收到的参数并不是被resolve的Promise对象，而是被resolve的Promise对象内部resolve的值。
 ```js
 var p1 = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -83,7 +83,7 @@ p1.then((v) => {
 
 在执行1秒后会首先输出`"p2 异步回调"`,3秒后剩下三条日志同时输出。当p2的异步完成调用回调函数时resolve了另一个promise对象。所以当前p2的状态被p1状态覆盖。1秒到3秒这个区间p1状态时pending，所以p2状态也是pending。直到p1异步完成（reject或resolve）。`p2.then()`的回调函数才会执行。并且`p2.then()`回调函数参数来自p1内部的resolve或reject。从上面看到p1和p2的then方法都接收到了p1的结果。但p1的执行次数只有一次。
 
-外层Promise接收内层Promise的reject结果。
+外层Promise接收内层Promise的reject结果情况。
 ```js
 var p1 = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -100,10 +100,8 @@ var p2 = new Promise((resolve, reject) => {
 p2.then((v) => {
     console.log("p2 then() 输出：" + v);
 },err=>{
-    console.log(err)
+    console.log(err);//会执行这一行，输出Error: emm
 })
-
-//Error: emm
 ```
 ## then()的返回值
 then的返回值也是一个Promise对象（注意，这里反回的Promise对象是一个新的Promise对象）。
@@ -137,6 +135,9 @@ var newp = p.then(v => {
     console.log("first then output:" + v);
     return v + 1;
 });//返回了一个新的promise
+
+//console.log(newp);
+//会输出Promise { pending }
 
 newp.then(v => {
     console.log("second then output:" + v);
@@ -173,7 +174,7 @@ p.then(v => {
 ```
 ![avatar](./img/promise2.png)
 
-`then()`的两个回调函数可以返回一个普通值，也可以返回一个Promise对象。也就是说`then()`返回了一个新Promise对象，这个新Promise对象又resolve了一个`then()`回调函数返回的Promise对象。
+`then()`的两个回调函数可以返回一个普通值，也可以返回一个Promise对象。如果`then()`回调函数返回了一个Promise对象，那么结果就是`then()`返回了一个新Promise对象，这个新Promise对象又resolve了一个`then()`回调函数返回的Promise对象。
 ```js
 var p = new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -195,7 +196,7 @@ p.then(v => {
 ```
 ![avatar](./img/promise3.png)
 
-这里`p.then()`返回了这样一个Promise对象。
+这里第一个then方法`p.then()`返回了这样一个Promise对象。
 ```js
 new Promise(resolve => resolve(p2));
 ```
@@ -255,7 +256,7 @@ p.then(v => {
     console.log(err);//会执行这一步
 })
 ```
-`then()`回调函数中的错误会交给后面的`then()`处理。
+`then()`回调函数中的错误也会交给后面的`then()`处理。
 ```js
 var p = new Promise((resolve, reject) => {
     resolve("123");
@@ -340,8 +341,9 @@ p1.then(res => {
 ```
 当`isSucceed`为true时会执行第一个then的回调，在这个回调里故意做了错误处理。这个错误会被`catch()`捕捉到。输出结果如下：
 
+![avatar](./img/promise7.png)
 
-当`isSucceed`为false时会reject一个错误。由于第一个`then()`没有设置第二个回调函数。这个reject会被向后传递。直到遇到有处理回调函数的部分（`catch`或`then(null,()=>{})`）。输出结果如下：
+当`isSucceed`为false时会reject一个错误。由于第一个`then()`没有设置第二个回调函数。这个reject会被向后传递。直到遇到有处理回调函数的部分（`catch()`或`then(null,()=>{})`）。输出结果如下：
 
 ![avatar](./img/promise8.png)
 
