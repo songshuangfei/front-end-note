@@ -153,6 +153,7 @@ p.then(v => {
 */
 ```
 ![avatar](./img/promise2.png)
+
 reject返回时的情况。
 ```js
 var p = new Promise((resolve, reject) => {
@@ -171,6 +172,7 @@ p.then(v => {
 });
 ```
 ![avatar](./img/promise2.png)
+
 `then()`的两个回调函数可以返回一个普通值，也可以返回一个Promise对象。也就是说`then()`返回了一个新Promise对象，这个新Promise对象又resolve了一个`then()`回调函数返回的Promise对象。
 ```js
 var p = new Promise((resolve, reject) => {
