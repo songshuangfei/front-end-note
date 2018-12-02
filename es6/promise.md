@@ -223,7 +223,7 @@ p.then(v => {
 })
 //和上面例子输出同样的内容
 ```
-## then
+## then的使用
 `then()`的第二个回调函数在promise对象内部reject时会执行。当promise对象内部出现错误时promise状态也会变成rejected，并reject这个error。
 ```js
 var p = new Promise((resolve, reject) => {
@@ -315,7 +315,7 @@ p.then()
 ```
 ![avatar](./img/promise6.png)
 
-## catch
+## catch的使用
 `catch(()=>{})`其实就是`then(null,()=>{})`的另一个写法。我们可以把它放在then链式调用最后来捕获各个环节的错误。
 ```js
 var isSucceed = true;
