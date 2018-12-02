@@ -20,7 +20,7 @@
 * [类和继承（es5）](/js/inherit.md)
 
 <span name="es6"></span>
-## es6笔记 
+## es6&later笔记 
 * [const定义对象的可修改性](/es6/const.md)
 * [探究Promise执行流](/es6/promise.md)
 
