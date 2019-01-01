@@ -124,6 +124,12 @@ arr[arr.length] = 3;
 console.log(arr);//[0, 1, 2, 3]
 console.log(arr.length);//4
 ```
-数组的push方法在数组尾部添加元素。
+使用数组的push方法在数组尾部添加元素。Array.prototype.push()接受任意个数的参数。这些参数会按顺序添加在数组尾部，同时数组长度也会增加。
+```js
+var arr = [0,1,2];
+arr.push(3,4,5);
+console.log(arr);//[0, 1, 2, 3, 4, 5]
+console.log(arr.length);//6
+```
 ### 在首位插入元素
 ### 删除元素
