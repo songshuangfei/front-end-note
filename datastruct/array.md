@@ -132,4 +132,40 @@ console.log(arr);//[0, 1, 2, 3, 4, 5]
 console.log(arr.length);//6
 ```
 ### 在首位插入元素
-### 删除元素
+数组有自带的方法`Array.prototype.unshift()`能够方便的在数组首位置插入一个或多个元素，其他元素都先后移动，并且改变数组长度。
+```js
+var arr = [1,2,3];
+arr.unshift(-1,0);//[-1, 0, 1, 2, 3]
+console.log(arr,arr.length);//5
+```
+### 删除数组尾部元素
+数组的`pop()`方法能够删除数组尾部的元素，并改变数组长度。`pop()`方法会返回被删除的元素。该方法与数组的`push()`方法相对。
+```js
+var arr = [1,2,3,4];
+arr.pop();
+console.log(arr);//[1, 2, 3]
+console.log(arr.length);//3
+```
+### 删除数组首位元素
+数组的`shift()`方法能够删除数组首位的元素，并改变数组长度。`shift()`方法会返回被删除的元素。该方法与数组的`unshift()`方法相对。
+```js
+var arr = [1,2,3,4];
+arr.shift()
+console.log(arr);//[2, 3, 4]
+console.log(arr.length);//3
+```
+### 在任意位置插入或删除元素
+数组的`splice()`方法可以用来删除任意位置的任意个数的元素，同时改变数组长度。传两个参数时第一个参数表示删除元素的起始位置，第二个参数表示删除元素的个数。超过2个的参数会会依次在被删除元素的位置插入。
+```js
+var arr = [1,2,3,4];
+arr.splice(1,2,0);
+console.log(arr);//[1,0 4]
+console.log(arr.length);//3
+```
+`splice()`也可以用来添加元素。当删除的元素个数为0时就是单纯的往数组里插入元素了。
+```js
+var arr = [1,2,3,4];
+arr.splice(1,0,0);
+console.log(arr);//[1, 0, 2, 3, 4]
+console.log(arr.length);//5
+```
