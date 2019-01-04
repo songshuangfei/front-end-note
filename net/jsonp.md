@@ -1,6 +1,6 @@
 # JSONP原理
 ## 跨域限制
-浏览器的同源策略限制了不同域名下的资源访问。比如 www.aaa.com 域名下的js文件在浏览器执行是不能用ajax请求 www.bbb.com下的资源。
+浏览器的同源策略限制了不同域名下的资源访问。比如www.aaa.com域名下的js文件在浏览器执行是不能用ajax请求www.bbb.com下的资源。
 
 先用node写一个简单的http服务，命名为server.js。
 ```js
@@ -38,16 +38,16 @@ let server = http.createServer((req,res)=>{
 })
 server.listen(3000);
 ```
-上面增加的第三行设置了响应头的`Access-Control-Allow-Origin`为`*`。`*`号表示在浏览器跨域时允许所有域名访问。也可以设置成只允许指定的域名访问。把域名替换掉`*`。重启服务，刷新浏览器就能看到报错消失。在控制台network分页就能看到后台设置的响应头和返回的数据。
+上面增加的第三行设置了响应头的`Access-Control-Allow-Origin`为`*`。`*` 号表示在浏览器跨域时允许所有域名访问。也可以设置成只允许指定的域名访问，用域名替换掉 `*` 即可。重启服务，刷新浏览器就能看到报错消失。在控制台network分页就能看到后台设置的响应头和返回的数据。
 
 ![json03](./img/jsonp03.png)
 
 ![json04](./img/jsonp04.png)
 ## jsonp原理
-如果不用设置`Access-Control-Allow-Origin`header的方法也可以用jsonp的方法。jsonp的实现有以下几点：
+如果不用设置`Access-Control-Allow-Origin`header的方法也可以用jsonp的方法。jsonp的实现有以下两点：
 
 * jsonp是利用html的script标签不受浏览器同源策略限制的特性来实现跨域的。
-* srcipt标签的src属性可以是完整的url。比如用script标签引入Jquery就可以在script的src属性中写http://xxx.com/jquery.min.js。
+
 * script标签会使用get方法请求script标签src属性里的url，将返回的结果作为javascript代码执行。
 
 修改server.js。
@@ -64,9 +64,9 @@ server.listen(3000);
 ```js
   <script src="http://localhost:3000"></script>
 ```
-server.js关闭了允许跨域访问。且只返回了一个字符串`"console.log('hello')"`。由于script不受浏览器同源策略限制尽管没有允许跨域访问的header，script标签依然仍请求到 http://localhost:3000 返回的字符串，并且浏览器会把会把这段字符串当作脚执行。本只要返回的字符串是规范的js脚本，就能正常执行。所以浏览器控制台会输出“hello”。
+server.js关闭了允许跨域访问。且只返回了一个字符串`"console.log('hello')"`。由于script不受浏览器同源策略限制尽管没有允许跨域访问的header，script标签依然仍请求到 http://localhost:3000 返回的字符串，并且浏览器会把会把这段字符串当作脚执行。只要返回的字符串是规范的js脚本，就能正常执行。所以浏览器控制台会输出“hello”。
 
-如果后台返回一个这样的字符串`"callback()"`，那么浏览器就会执行这一句代码。只要浏览器js的上下文定义了名为callback的函数，请求到的js脚本就能正常执行。所以在请求前可以定义好一个叫callback函数，在script请求时带上这个函数名。后台用传过来的函数名拼接一个复合js函数执行语句的字符串，再返回给前端，前端就能执行之前定义好的那个叫callback的函数了。后台在拼接字符串时可以把数据加载函数的参数位置。比如`"callback + "(" + 123"+ ")"`。这样就拼接了一个带123实参的函数执行语句。
+如果后台返回一个这样的字符串`"callback()"`，那么浏览器就会执行这一句代码。只要浏览器js的上下文定义了名为callback的函数，请求到的js脚本就能正常执行。所以在请求前可以定义好一个叫callback函数，在script请求时带上这个函数名。后台用传过来的函数名拼接一个复合js函数执行语句的字符串，再返回给前端，前端就能执行之前定义好的那个叫callback的函数了。后台在拼接字符串时可以把数据加在函数的参数位置。比如`"callback + "(" + 123"+ ")"`。这样就拼接了一个带123实参的函数执行语句。
 
 修改html如下。
 ```html
