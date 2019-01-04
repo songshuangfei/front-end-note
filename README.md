@@ -5,6 +5,7 @@
 * <a href="#es6">es6笔记</a>
 * <a href="#algorithm">js算法和数据结构</a>
 * <a href="#nodejs">nodejs笔记</a>
+* <a href="#netreq">网络请求</a>
 
 <span name="htmlcss"></span>
 ## html和css笔记
@@ -31,6 +32,10 @@
 ### 排序算法
 * [冒泡排序](algorithm/sort/BubbleSort.md)
 * [快速排序](algorithm/sort/quickSort.md)
+
+<span name="netreq"></span>
+### 网络请求
+* [JSONP原理](net/jsonp.md)
 
 <span name="nodejs"></span>
 ## nodejs笔记
