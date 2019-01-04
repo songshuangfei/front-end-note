@@ -1,8 +1,16 @@
 # 数组及常用操作
+书签:
+* [创建和初始化数组](#t1)
+* [数组遍历](#t2)
+* [删除、添加和插入元素](#t3)
+* [二维数组](#t4)
+* [数组合并与复制](#t5)
+* [数组排序](#t6)
+* [数组检索](#t7)
+
+
 js数组和其他语言数组不一样，并不强制每一个元素类型相同，数组长度也并不是始终固定的。js的数组和对象很像。
-
-包含内容:
-
+<span name="t1"></span>
 ## 创建和初始化数组
 创建数组方式有两种：
 * `var arr = new Array()`
@@ -36,6 +44,7 @@ console.log(arr.length);//0
 var arr2 = [1];
 console.log(arr2.length,arr2[0])//1  1
 ```
+<span name="t2"></span>
 ## 数组遍历
 数组遍历有两种方式：
 * for类循环
@@ -116,6 +125,7 @@ for (const i of arr.entries()) {
 | forEach | 对数组中的每一项运行给定函数，无返回值 |
 | every | 对数组中的每一项运行给定函数，如果每一项返回true，则最终返回true |
 | filter | 对数组中的每一项运行给定函数，返回该函数返回ture的数组素元素组成的新数组 |
+<span name="t3"></span>
 ## 删除、添加和插入元素
 ### 数组越界
 在超过数组长度的位置设置值时，数组的长度也会增加。添加元素前数组的最后一个元素到新添加元素之间的位置值会是undefined。
@@ -178,6 +188,7 @@ arr.splice(1,0,0);
 console.log(arr);//[1, 0, 2, 3, 4]
 console.log(arr.length);//5
 ```
+<span name="t4"></span>
 ## 二维数组
 js二维数组实际上就是一个普通数组的每一个元素任然是一个数组。这样就构成了一个二维数组。多维数组也是一样继续嵌套数组。
 ```js
@@ -192,6 +203,7 @@ for(let i = 0; i < arr.length; i++) {
     }
 }
 ```
+<span name="t5"></span>
 ## 数组合并与复制
 ### 数组合并
 数组的`Array.pototype.contact()`方法可以合并数组，`contact()`方法参数如果传入的是数组，则会合并这个数组到旧数组里。如果传入的不是数组就会把这个参数追加到数组。追加顺序按参数顺序。最终返这个新数组。
@@ -239,6 +251,7 @@ var arr2 = Array.from(arr);
 arr2[3].x = 100;
 console.log(arr[3]);//{x:100}
 ```
+<span name="t6"></span>
 ## 数组排序
 ### 数组默认排序
 数组有一个自带的排序方法`Array.prototype.sort()`。该方法接受一个函数作为参数，这个函数叫做compare函数（比较函数）。如果`sort()`没有传入参数时该方法默认会把数组元素当作字符串排序。
@@ -316,6 +329,7 @@ var a = [0,1,2,3];
 a.reverse();
 console.log(a);//[3, 2, 1, 0]
 ```
+<span name="t7"></span>
 ## 数组搜索
 数组有两个搜索方法`Array.prototype.indexof()`和`Array.prototype.lastIndexof()`，这两个方法都接受一个参数，即被搜索的元素。`indexof()`返回匹配参数的第一个元素的索引，`lastIndexof()`返回匹配参数的最后一个元素的索引。
 ```js
