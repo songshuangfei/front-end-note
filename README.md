@@ -29,6 +29,7 @@
 ## js算法和数据结构
 ### 数据解构
 * [数组及常用操作](datastruct/array.md)
+* [栈](datastruct/stack.md)
 ### 排序算法
 * [冒泡排序](algorithm/sort/BubbleSort.md)
 * [快速排序](algorithm/sort/quickSort.md)
