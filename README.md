@@ -6,6 +6,7 @@
 * <a href="#algorithm">js算法和数据结构</a>
 * <a href="#nodejs">nodejs笔记</a>
 * <a href="#netreq">网络请求</a>
+* <a href="#typescript">typescript学习笔记</a>
 
 <span name="htmlcss"></span>
 ## html和css笔记
@@ -41,4 +42,7 @@
 <span name="nodejs"></span>
 ## nodejs笔记
 * [nodejs中的TCP、HTTP和WebSocket](node/tcp&http&ws.md)
+
+<span name="typescript"></span>
+## typescript学习笔记
 
