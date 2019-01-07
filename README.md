@@ -45,4 +45,6 @@
 
 <span name="typescript"></span>
 ## typescript学习笔记
+* [类型](ts/type.md)
+* [typescript函数](ts/func.md)
 
