@@ -55,6 +55,10 @@ console.log(obj.constructor);//function Object()
 var arr2 =[];
 console.log(arr2.constructor);//function Array()
 ```
+constructor属性也是充prototype继承下来的，并且就是构造函数本身。
+```js
+console.log(Array.prototype.constructor===Array);//true
+```
 ### 自定义构造函数。
 ```javascript
 function Person(name){          //这里的Person就和Array、Number一样了，不过是我们自定义的类型。
@@ -105,7 +109,7 @@ p.sayhi();//Hi Iam Tom
 p2.sayhi();//Hello Iam Tom
 ```
 在p2里添加了一个同名方法p2将使用自己的方法，不再在原型链中寻找。而p没有自己的方法，只有使用原型链中的方法。上面的p和p2就是构建了原型链。以p为例，`p.__proto__`指向`Person.prototype`(即`{sayhi:function(){}}`)。`{sayhi:function(){}}`指向`Object.prototype`。
-## 原型运用
+### 方法
 我们可以向`constructor.prototype`添加我们想给这个类型添加的方法。无论这个constructor是类似Array、Number这样的默认类型还是像上面的Person一样自定义的类型。
 
 给数组添加一个求所有元素和的方法。
@@ -121,6 +125,61 @@ Array.prototype.getSum = function(){
 var arr = new Array();
 arr = [1,2,3,4];
 console.log(arr.getSum());
+```
+### 类方法和属性
+把方法直接定义在构造函数上得方法不会被实例继承，这种方法一般叫工具函数。
+```js
+function Vector2(x, y) {
+    this.x = x;
+    this.y = y
+}
+
+Vector2.zero = new Vector2(0,0);
+Vector2.Distance = function(a,  b){
+    var offsetX = b.x - a.x;
+    var offsetY = b.y - a.y;
+    return Math.sqrt(offsetX*offsetX+offsetY*offsetY)
+}
+
+var d = Vector2.Distance(new Vector2(1,1),Vector2.zero)
+console.log(d)//1.4142135623730951
+```
+上面就定义了一个二维向量的类。Vector2上有一个属性zero表示零向量和一个方法Distance用于求两个二维向量差值的距离，这两个都不会被实例继承。一般当作工具使用。
+
+在实例的方法中也有可能访问类属性和方法的需求。有两种方式。
+```js
+function Vector2(x, y) {
+    this.x = x;
+    this.y = y;
+}
+
+Vector2.up = new Vector2(0,1);
+
+Vector2.prototype.addup = function(){
+    this.x += Vector2.up.x; //直接通过类名访问
+    this.y += Vector2.up.y;
+    return this;
+}
+var p = new Vector2(1,1);
+console.log(p.addup());//Vector2 { x: 1, y: 2 }
+```
+在方法中更好访问类属性或类方法的方法。能更好地代码复用。
+```js
+function Vector2(x, y) {
+    this.x = x;
+    this.y = y;
+}
+
+Vector2.up = new Vector2(0,1);
+
+Vector2.prototype.addup = function(){
+    this.x += this.constructor.up.x;//构造函数的引用
+    this.y += this.constructor.up.y;
+    return this;
+}
+
+var p = new Vector2(1,1);
+console.log(p.addup());//Vector2 { x: 1, y: 2 }
 ```
 ## 相关链接
 * [对象的拷贝与冻结](/js/objectCopyFreeze.md)
