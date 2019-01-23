@@ -361,6 +361,17 @@ var a = [1,2,3,1];
 console.log(a.includes(2));//true
 console.log(a.includes(2,2));//false
 ```
+## 数组去重
+数组去重有很多方法，这里使用es6的set结构实现数组去重。
+```js
+var a = [1,2,2,1,4,6,5,5,5,7];
+var s = new Set();
+a.forEach((v) => {
+    s.add(v)
+});
+a = Array.of(...s);
+console.log(a);//[ 1, 2, 4, 6, 5, 7 ]
+```
 ## 相关链接
 * [返回目录](/README.md)
 
