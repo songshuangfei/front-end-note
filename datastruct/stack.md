@@ -10,30 +10,37 @@ var Stack =(function(){
 
     stack.prototype = {
         get size(){
+            //返回栈内元素个数
             return items.length;
         },
         get isEmpty(){
+            //栈是否为空
             return items.length === 0;
         },
         push(i){
+            //入栈
             items.push(i)
         },
         pop(){
+            //出栈，并返回出栈元素
             if(items.length === 0){
                 return null;
             }
             return items.pop()
         },
         peek(){
+            //返回栈顶元素
             if(items.length === 0){
                 return null;
             }
             return items[items.length - 1]
         },
         clear(){
+            //清空栈
             items = [];
         },
         print(){
+            //输出栈内容
             console.log(items.toString());
         }
     }
