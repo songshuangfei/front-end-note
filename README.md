@@ -32,12 +32,13 @@
 * [数组及常用操作](datastruct/array.md)
 * [栈](datastruct/stack.md)
 * [队列](datastruct/queue.md)
+* [链表](datastruct/LinkedList.md)
 ### 排序算法
 * [冒泡排序](algorithm/sort/BubbleSort.md)
 * [快速排序](algorithm/sort/quickSort.md)
 
 <span name="netreq"></span>
-### 网络请求
+## 网络请求
 * [JSONP原理](net/jsonp.md)
 
 <span name="nodejs"></span>
