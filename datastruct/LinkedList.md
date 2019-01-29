@@ -138,5 +138,126 @@ _LinkedList.prototype.getHead = function(){
     return head;
 }
 ```
+完整例子
+```js
+let LinkedList = (function(){
+
+    // 链表节点
+    function Node(element){
+        this.element = element;
+        this.next = null;
+    };
+
+    let length = 0;
+    let head = null;
+
+    function LinkedList(){};
+
+    LinkedList.prototype = {
+        get size(){
+            return length;
+        },
+        get isEmpty(){
+            return length === 0;
+        },
+        append(element){
+            let node = new Node(element),
+                current;
+
+            if(head === null){
+                head = node;
+            }else{
+                current = head;
+                while(current.next){
+                    current = current.next;
+                }
+                current.next = node;
+            }
+            length++;
+        },
+        removeAt(position){
+            if(position > -1 && position < length){
+                let current = head,
+                    previous,
+                    index = 0;
+
+                if(position === 0){
+                    head = current.next;
+                } else {
+                    while(index++ < position){
+                        previous = current;
+                        current = current.next;
+                    }
+                    previous.next = current.next;
+                };
+                length --;
+                return current.element;
+            }else{
+                return null;
+            }
+        },
+        insert(position, element){
+            if(position >=0 && position <= length){
+                let node = new Node(element),
+                    current = head,
+                    previous,
+                    index = 0;
+                if(position === 0){
+                    node.next = current;
+                    head = node;
+                } else {
+                    while(index++ < position){
+                        previous = current;
+                        current = current.next;
+                    }
+
+                    node.next = current;
+                    previous.next = node;
+                }
+                length++;
+                return true;
+            } else {
+                return false;
+            }
+        },
+        toString(){
+            let str = "",current = head;
+            while(current){
+                str = str + current.element + " ";
+                current = current.next;
+            }
+            return str;
+        },
+        indexOf(element){
+            let index = 0,
+            current = head;
+
+            while(current){
+                if(current.element === element){
+                    return index;
+                }
+                index++;
+                current = current.next;
+            }
+            return -1;
+        },
+        getHead(){
+            return head;
+        }
+    };
+    return LinkedList;
+})();
+
+
+var l = new LinkedList();
+console.log(l.size,l.isEmpty);//0 true
+l.append("a");
+l.append("b");
+l.append("c");
+console.log(l.insert(1,"s"));true
+console.log(l.size,l.isEmpty);//4 false
+console.log(l.toString());//a s b c
+console.log(l.indexOf("a2"));//-1
+```
 ## 相关链接
 * [返回目录](/README.md)
