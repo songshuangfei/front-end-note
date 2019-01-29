@@ -25,6 +25,9 @@ let LinkedList = (function(){
         get size(){
             return length;
         },
+        get isEmpty(){
+            return length === 0;
+        }
     };
 
     return _LinkedList;
@@ -74,3 +77,66 @@ _LinkedList.prototype.removeAt = function(position){
 }
 ```
 ### 插入元素
+插入元素和移除元素大致相似。在首位插入元素时将新元素的nex指向head再将head指向新节点。在其他位置插入元素时就将新元素的next指向被插入位置的元素。在将被插入位置前的元素的next指向新元素。
+```js
+_LinkedList.prototype.insert = function(position, element){
+    if(position >= 0 && position <= length){
+        let node = new Node(element),
+            current = head,
+            previous,
+            index = 0;
+        if(position === 0){
+            node.next = current;
+            head = node;
+        } else {
+            while(index++ < position){
+                previous = current;
+                current = current.next;
+            }
+
+            node.next = current;
+            previous.next = node;
+        }
+        length++;
+        return true;
+    } else {
+        return false;
+    }
+}
+```
+### 其他方法
+遍历链表并把元素拼接成字符串。
+```js
+_LinkedList.prototype.toString = function(){
+    let str = "",current = head;
+    while(current){
+        str = str + current.element + " ";
+        current = current.next;
+    }
+    return str;
+}
+```
+indexOf方法，返回第一个匹配的元素的index。
+```js
+_LinkedList.prototype.indexOf = function(element){
+    let index = 0,
+    current = head;
+
+    while(current){
+        if(current.element === element){
+            return index;
+        }
+        index++;
+        current = current.next;
+    }
+    return -1;
+}
+```
+getHead方法，用来返回链表的头节点。其实如果链表方法实现得足够好，一般不要用这个方法。
+```js
+_LinkedList.prototype.getHead = function(){
+    return head;
+}
+```
+## 相关链接
+* [返回目录](/README.md)
