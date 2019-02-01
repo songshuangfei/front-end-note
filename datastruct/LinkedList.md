@@ -259,5 +259,124 @@ console.log(l.size,l.isEmpty);//4 false
 console.log(l.toString());//a s b c
 console.log(l.indexOf("a2"));//-1
 ```
+## 双向链表
+双向链表和单向链表的区别是每一个节点除了有一个next指针指向下一个节点外还有一个prev指针指向前一个节点。
+```js
+let DoublyLinkedList = (function(){
+    let Node = function(element){
+        this.element = element;
+        this.prev = null;//增加
+        this.next = null;
+    };
+    let length = 0;
+    let head = null;
+    let tail = null;//增加
+
+    function _DoublyLinkedList(){};
+
+    _DoublyLinkedList.prototype = {
+        get size(){
+            return length;
+        },
+        get isEmpty(){
+            return length === 0;
+        }
+
+    };
+    return _DoublyLinkedList;
+})();
+```
+### 添加元素
+在双向链表中添加了一个tail指针，指向尾节点。每次添加新节点时就不必再遍历到尾节点了。在添加了新节点后必须把tail指针指向新的尾节点。
+```js
+_DoublyLinkedList.prototype.append = function(){
+    let node = new Node(element);
+    if(head === null){
+        head = node;
+        tail = node;
+    }else{
+        let current = tail;
+        current.next = node;
+        node.prev = current;
+        tail = node;
+    }
+    length++;
+}
+```
+### 插入元素
+插入元素和单向列表区别是在插入元素后要对新元素和插入位置后的一个元素的prev指针设置正确的值（指向本身前一个元素），在最后位置插入元素时要将tail指针指向尾节点。
+```js
+_DoublyLinkedList.prototype.insert = function(position, element){
+    if(position >=0 && position <= length){
+        let node = new Node(element),
+        current = head,
+        previous,
+        index = 0;
+        if(position === 0){
+            if(!head){
+                head = node;
+                tail = node;
+            } else {
+                node.next = current;
+                current.prev = node;
+                head = node;
+            }
+        } else if (position === length){
+            current = tail;
+            current.next = node;
+            node.prev = current;
+            tail = node;
+        } else {
+            while(index++ < position){
+                previous = current;
+                current = current.next;
+            }
+            node.next = current;
+            previous.next = node;
+
+            current.prev = node;
+            node.prev = previous;
+        }
+        length++;
+        return true;
+    } else {
+        return false;
+    }
+}
+```
+### 移除元素
+移除元素主要注意首尾两个位置。移除首节点要将head指向第二个元素，并且将新head的prev值改为null。移除尾节点时要将tail指针指向倒数第二个元素并将新tail的next值修改为null。
+```js
+_DoublyLinkedList.prototype.removeAt = function(position){
+    if(position > -1 && position < length){
+        let current = head,
+        previous,
+        index = 0;
+        if(position === 0){//移除第一项
+            head = current.next;
+            if(length === 1){
+                tail = null;
+            } else {
+                head.prev = null;
+            }
+        } else if (position === length-1){//移除最后一项
+            current = tail;
+            tail = current.prev;
+            tail.next = null;
+        }else{
+            while(index++ < position){
+                previous = current;
+                current = current.next;
+            }
+            previous.next = current.next;
+            current.next.prev = previous;
+        }
+        length--;
+        return current.element;
+    } else {
+        return null;
+    }
+},
+```
 ## 相关链接
 * [返回目录](/README.md)
