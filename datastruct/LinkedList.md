@@ -378,5 +378,7 @@ _DoublyLinkedList.prototype.removeAt = function(position){
     }
 },
 ```
+## 循环链表
+循环链表既可以是单向的也可以是双向的。单向循环链表的尾节点的next指针（tail.next）必须指向头节点（head），双向循环链表的tail.next要指向head，head.prev要指向tail。
 ## 相关链接
 * [返回目录](/README.md)
