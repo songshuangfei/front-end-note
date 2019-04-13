@@ -44,9 +44,3 @@
 <span name="nodejs"></span>
 ## nodejs笔记
 * [nodejs中的TCP、HTTP和WebSocket](node/tcp&http&ws.md)
-
-<span name="typescript"></span>
-## typescript学习笔记
-* [类型](ts/type.md)
-* [typescript函数](ts/func.md)
-
