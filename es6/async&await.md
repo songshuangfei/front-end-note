@@ -150,7 +150,7 @@ console.log(newP);
 
 两个例子结果都如下：
 
-![result](./img/async&await.png)
+![result](./img/async&await01.png)
 
 上面第二个例子的`promise`的then的也会返回一个新的`promise`，并resolve其传入回调函数的返回值，作用和async函数一样。比如：
 ```js
@@ -184,6 +184,10 @@ A().then(d=>{
     console.log(d)
 })
 ```
-总结: async函数中使用await后，能够像同步一样执行。可以理解成在async函数中，await命令之后的代码相当于在被await修饰的Promise的then中执行。
+两个例子结果都如下：
+
+![result](./img/async&await02.png)
+
+总结: async函数中使用await后，能够像同步一样执行。可以理解成在async函数中，await命令之后的代码相当于在被await修饰的Promise的then的回调中执行。
 ## 相关链接
 * [返回目录](/README.md)
