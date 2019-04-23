@@ -25,6 +25,7 @@
 ## es6&later笔记 
 * [const定义对象的可修改性](es6/const.md)
 * [探究Promise执行流](es6/promise.md)
+* [async & await](es6/async&await.md)
 
 <span name="algorithm"></span>
 ## js算法和数据结构
