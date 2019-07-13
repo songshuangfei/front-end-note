@@ -23,7 +23,25 @@ let bindedaa = aa.myBind(obj,2,5);
 bindedaa();//8
 bindedaa(1,1);//3
 ```
-* 知道创宇面试：
+* 京东面试:
+
+问：多久会输出1
+```js
+setTimeout(() => {
+    console.log("1")
+}, 5000);
+
+while(){
+    //阻塞6秒
+}
+console.log("2");
+```
+答：
+```js
+//emm 
+```
+
+* 知道创宇笔试：
 
 问：
 ```js
