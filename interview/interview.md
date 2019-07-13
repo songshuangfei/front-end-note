@@ -23,3 +23,50 @@ let bindedaa = aa.myBind(obj,2,5);
 bindedaa();//8
 bindedaa(1,1);//3
 ```
+* 知道创宇面试：
+
+问：
+```js
+function a(){
+    console.log("a");
+}
+
+function b(){
+    // 无论b执行多少次，a只会60s后才能再执行
+    //这里写上逻辑
+    a();
+}
+```
+答：
+```js
+function a(){
+    console.log("a");
+}
+
+function b(){
+    console.log("b");
+    
+    if(!global.time){
+        global.toggle = false;
+        global.time = setInterval(() => {
+            global.toggle = false;
+        }, 6000);
+    }
+    if(global.toggle){
+        return;
+    }
+    global.toggle = true;
+    a();
+}
+
+b();
+b();
+b();
+b();
+b();
+b();
+
+setTimeout(() => {
+    b();
+}, 7000);
+```
